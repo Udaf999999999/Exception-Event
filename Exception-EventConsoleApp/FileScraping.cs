@@ -19,7 +19,7 @@ namespace Exception_EventConsoleApp
             //    new FileNotFoundException("File not found!"),
             //    new PathTooLongException("Path is too long!")
             //};
-            Exception[] exceptions = {System.AggregateException };
+            //Exception[] exceptions = {System.AggregateException };
 
             try
             {
