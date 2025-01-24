@@ -1,28 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Exception_EventConsoleApp
 {
-    public class WrongInputSortWayException : Exception
-    {
-        public WrongInputSortWayException(string message) : base(message) 
-        {
-        }
-    }
-    public class SurnameSort<T>
+    internal class SurnameSortThrowEvent
     {
         private string[] surnames = new string[5];
-        public string[] Surname {  get { return surnames; } }
+        public string[] Surname { get { return surnames; } }
         private int sortWay = 1;
 
-        public delegate void SortCompliteDelegate(string[] surnames);
-        public event SortCompliteDelegate SortCompliteEvent;
+        public delegate void SortingDelegate(string[] surnames);
+        public event SortingDelegate SortingEvent;
 
-        public SurnameSort(string[] surnames)
+        public SurnameSortThrowEvent(string[] surnames)
         {
             try
             {
@@ -65,23 +58,18 @@ namespace Exception_EventConsoleApp
                 if (sortWay != 1 && sortWay != 2)
                     throw new WrongInputSortWayException("Value must be 1 or 2!");
             }
-            catch (Exception e) when (e is WrongInputSortWayException) 
+            catch (Exception e) when (e is WrongInputSortWayException)
             {
                 Console.WriteLine(DateTime.Now + ": " + e.Message + "\nThe default value is 1.");
                 sortWay = 1;
             }
             catch (Exception e)
             {
-                Console.WriteLine(DateTime.Now + ": " + e.Message + 
+                Console.WriteLine(DateTime.Now + ": " + e.Message +
                     "\nInput value is not a digit\nThe default value is 1.");
                 sortWay = 1;
             }
-            finally
-            {
-                if (sortWay == 1) SortAscend();
-                else SortDescend();
-            }
-            OnSortComplite();
+            OnSortInvoking();
         }
         public void ShowSurnames()
         {
@@ -99,9 +87,11 @@ namespace Exception_EventConsoleApp
             Array.Sort(surnames);
             Array.Reverse(surnames);
         }
-        protected virtual void OnSortComplite()
+        protected virtual void OnSortInvoking()
         {
-            SortCompliteEvent?.Invoke(surnames);
+            if (sortWay == 1) SortAscend();
+            else SortDescend();
+            SortingEvent?.Invoke(surnames);
         }
     }
 }

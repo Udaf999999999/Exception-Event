@@ -1,32 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Exception_EventConsoleApp
 {
-    public class WrongInputSortWayException : Exception
+    internal class SurnameSortThrowEventList
     {
-        public WrongInputSortWayException(string message) : base(message) 
-        {
-        }
-    }
-    public class SurnameSort<T>
-    {
-        private string[] surnames = new string[5];
-        public string[] Surname {  get { return surnames; } }
+        private List<string> surnames;
+        public List<string> Surname { get { return surnames; } }
         private int sortWay = 1;
 
-        public delegate void SortCompliteDelegate(string[] surnames);
-        public event SortCompliteDelegate SortCompliteEvent;
+        public delegate void SortingDelegate(List<string> surnames);
+        public event SortingDelegate SortingEvent;
 
-        public SurnameSort(string[] surnames)
+        public SurnameSortThrowEventList(List<string> surnames)
         {
             try
             {
-                if (surnames == null || surnames.Length != 5) throw new ArgumentException("String count must be five.");
+                if (surnames == null || surnames.Count != 5) throw new ArgumentException("String count must be five.");
                 foreach (string s in surnames)
                 {
                     if (string.IsNullOrEmpty(s)) throw new ArgumentException("Surname can't be empty!");
@@ -41,7 +34,7 @@ namespace Exception_EventConsoleApp
         public void GetNamesFromKeyboard()
         {
             Console.WriteLine("Please, enter surnames");
-            for (int i = 0; i < surnames.Length; i++)
+            for (int i = 0; i < surnames.Count; i++)
             {
                 Console.WriteLine("Enter " + (i + 1) + " surname:");
                 surnames[i] = Console.ReadLine();
@@ -65,23 +58,18 @@ namespace Exception_EventConsoleApp
                 if (sortWay != 1 && sortWay != 2)
                     throw new WrongInputSortWayException("Value must be 1 or 2!");
             }
-            catch (Exception e) when (e is WrongInputSortWayException) 
+            catch (Exception e) when (e is WrongInputSortWayException)
             {
                 Console.WriteLine(DateTime.Now + ": " + e.Message + "\nThe default value is 1.");
                 sortWay = 1;
             }
             catch (Exception e)
             {
-                Console.WriteLine(DateTime.Now + ": " + e.Message + 
+                Console.WriteLine(DateTime.Now + ": " + e.Message +
                     "\nInput value is not a digit\nThe default value is 1.");
                 sortWay = 1;
             }
-            finally
-            {
-                if (sortWay == 1) SortAscend();
-                else SortDescend();
-            }
-            OnSortComplite();
+            OnSortInvoking();
         }
         public void ShowSurnames()
         {
@@ -92,16 +80,18 @@ namespace Exception_EventConsoleApp
         }
         private void SortAscend()
         {
-            Array.Sort(surnames);
+            surnames.Sort();
         }
         private void SortDescend()
         {
-            Array.Sort(surnames);
-            Array.Reverse(surnames);
+            surnames.Sort();
+            surnames.Reverse();
         }
-        protected virtual void OnSortComplite()
+        protected virtual void OnSortInvoking()
         {
-            SortCompliteEvent?.Invoke(surnames);
+            if (sortWay == 1) SortAscend();
+            else SortDescend();
+            SortingEvent?.Invoke(surnames);
         }
     }
 }
