@@ -94,11 +94,11 @@ namespace Exception_EventConsoleApp
 			surnameSort.Sort("1");
 
 			// Assert
-			Assert.Equal("Dragunov", surnameSort.surnames[0]);
-			Assert.Equal("Gavrilov", surnameSort.surnames[1]);
-			Assert.Equal("Orlov", surnameSort.surnames[2]);
-			Assert.Equal("Sidorov", surnameSort.surnames[3]);
-			Assert.Equal("Smirnov", surnameSort.surnames[4]);
+			Assert.Equal("Dragunov", surnameSort.Surname[0]);
+			Assert.Equal("Gavrilov", surnameSort.Surname[1]);
+			Assert.Equal("Orlov", surnameSort.Surname[2]);
+			Assert.Equal("Sidorov", surnameSort.Surname[3]);
+			Assert.Equal("Smirnov", surnameSort.Surname[4]);
 		}
         [Fact]
         public void CurrectAscendSortRussianChar()
@@ -111,11 +111,11 @@ namespace Exception_EventConsoleApp
             surnameSort.Sort("1");
 
             // Assert
-            Assert.Equal("Гаврилов", surnameSort.surnames[0]);
-            Assert.Equal("Драгунов", surnameSort.surnames[1]);
-            Assert.Equal("Олегов", surnameSort.surnames[2]);
-            Assert.Equal("Сидоров", surnameSort.surnames[3]);
-            Assert.Equal("Смирнов", surnameSort.surnames[4]);
+            Assert.Equal("Гаврилов", surnameSort.Surname[0]);
+            Assert.Equal("Драгунов", surnameSort.Surname[1]);
+            Assert.Equal("Олегов", surnameSort.Surname[2]);
+            Assert.Equal("Сидоров", surnameSort.Surname[3]);
+            Assert.Equal("Смирнов", surnameSort.Surname[4]);
         }
         [Fact]
 		public void CurrectDescendSort()
@@ -129,11 +129,11 @@ namespace Exception_EventConsoleApp
 
 			// Assert
 
-			Assert.Equal("Smirnov", surnameSort.surnames[0]);
-			Assert.Equal("Sidorov", surnameSort.surnames[1]);
-			Assert.Equal("Orlov", surnameSort.surnames[2]);
-			Assert.Equal("Gavrilov", surnameSort.surnames[3]);
-			Assert.Equal("Dragunov", surnameSort.surnames[4]);
+			Assert.Equal("Smirnov", surnameSort.Surname[0]);
+			Assert.Equal("Sidorov", surnameSort.Surname[1]);
+			Assert.Equal("Orlov", surnameSort.Surname[2]);
+			Assert.Equal("Gavrilov", surnameSort.Surname[3]);
+			Assert.Equal("Dragunov", surnameSort.Surname[4]);
 		}
         [Fact]
         public void CurrectDescendSortRussianChar()
@@ -147,11 +147,11 @@ namespace Exception_EventConsoleApp
 
             // Assert
 
-            Assert.Equal("Смирнов", surnameSort.surnames[0]);
-            Assert.Equal("Сидоров", surnameSort.surnames[1]);
-            Assert.Equal("Олегов", surnameSort.surnames[2]);
-            Assert.Equal("Драгунов", surnameSort.surnames[3]);
-            Assert.Equal("Гаврилов", surnameSort.surnames[4]);
+            Assert.Equal("Смирнов", surnameSort.Surname[0]);
+            Assert.Equal("Сидоров", surnameSort.Surname[1]);
+            Assert.Equal("Олегов", surnameSort.Surname[2]);
+            Assert.Equal("Драгунов", surnameSort.Surname[3]);
+            Assert.Equal("Гаврилов", surnameSort.Surname[4]);
         }
     }
 }

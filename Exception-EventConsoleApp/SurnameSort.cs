@@ -15,7 +15,12 @@ namespace Exception_EventConsoleApp
     }
     public class SurnameSort
     {
-        public string[] surnames = new string[5];//Изменить модефикатор
+        private string[] surnames = new string[5];
+        public string[] Surname {  get { return surnames; } }
+        private int sortWay = 1;
+
+        public delegate void SortCompliteDelegate(string[] surnames);
+        public event SortCompliteDelegate SortCompliteEvent;
 
         public SurnameSort(string[] surnames)
         {
@@ -32,9 +37,7 @@ namespace Exception_EventConsoleApp
             {
                 throw ex;
             }
-
         }
-
         public void GetNamesFromKeyboard()
         {
             Console.WriteLine("Please, enter surnames");
@@ -54,13 +57,8 @@ namespace Exception_EventConsoleApp
         {
             ChooseSort(choose);
         }
-        public void Sort(int sortWay)
-        {
-            //Дореализовать
-        }
         private void ChooseSort(string choose)
         {
-            int sortWay = 1;
             try
             {
                 sortWay = Int32.Parse(choose);
@@ -83,6 +81,7 @@ namespace Exception_EventConsoleApp
                 if (sortWay == 1) SortAscend();
                 else SortDescend();
             }
+            OnSortComplite();
         }
         public void ShowSurnames()
         {
@@ -99,6 +98,10 @@ namespace Exception_EventConsoleApp
         {
             Array.Sort(surnames);
             Array.Reverse(surnames);
+        }
+        protected virtual void OnSortComplite()
+        {
+            SortCompliteEvent?.Invoke(surnames);
         }
     }
 }
