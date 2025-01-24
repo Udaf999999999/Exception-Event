@@ -13,7 +13,7 @@ namespace Exception_EventConsoleApp
         {
         }
     }
-    public class SurnameSort<T>
+    public class SurnameSort
     {
         private string[] surnames = new string[5];
         public string[] Surname {  get { return surnames; } }

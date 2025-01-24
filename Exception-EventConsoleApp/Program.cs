@@ -33,7 +33,11 @@
             //surnameSortList.Sort();
             //surnameSortList.ShowSurnames();
 
-            //
+            ////SurnameSortThrowEventList
+            //SurnameSortThrowEventList surnameSortThrowEventList = new SurnameSortThrowEventList(list);
+            //surnameSortThrowEventList.SortingEvent += SurnameSortComplitedList;
+            //surnameSortThrowEventList.Sort();
+            //surnameSortThrowEventList.ShowSurnames();
         }
     }
 }
