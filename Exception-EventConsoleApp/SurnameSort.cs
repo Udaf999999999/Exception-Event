@@ -9,7 +9,9 @@ namespace Exception_EventConsoleApp
 {
     public class WrongInputSortWayException : Exception
     {
-        public WrongInputSortWayException(string message) : base(message) { }
+        public WrongInputSortWayException(string message) : base(message) 
+        {
+        }
     }
     public class SurnameSort
     {
@@ -58,19 +60,28 @@ namespace Exception_EventConsoleApp
         }
         private void ChooseSort(string choose)
         {
-            int sortWay;
+            int sortWay = 1;
             try
             {
                 sortWay = Int32.Parse(choose);
                 if (sortWay != 1 && sortWay != 2)
                     throw new WrongInputSortWayException("Value must be 1 or 2!");
-
-                if (sortWay == 1) SortAscend();
-                else SortDescend();
+            }
+            catch (Exception e) when (e is WrongInputSortWayException) 
+            {
+                Console.WriteLine(DateTime.Now + ": " + e.Message + "\nThe default value is 1.");
+                sortWay = 1;
             }
             catch (Exception e)
             {
-                throw e;
+                Console.WriteLine(DateTime.Now + ": " + e.Message + 
+                    "\nInput value is not a digit\nThe default value is 1.");
+                sortWay = 1;
+            }
+            finally
+            {
+                if (sortWay == 1) SortAscend();
+                else SortDescend();
             }
         }
         public void ShowSurnames()

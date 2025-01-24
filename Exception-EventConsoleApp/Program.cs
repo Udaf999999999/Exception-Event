@@ -7,7 +7,8 @@
         {
             string[] strings = { "Orlov", "Sidorov", "Dragunov", "Smirnov", "Gavrilov" };
             SurnameSort surnameSort = new SurnameSort(strings);
-            surnameSort.Sort("1");
+            
+            surnameSort.Sort();
             surnameSort.ShowSurnames();
             Console.WriteLine("Hello, World!");
         }

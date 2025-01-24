@@ -100,7 +100,24 @@ namespace Exception_EventConsoleApp
 			Assert.Equal("Sidorov", surnameSort.surnames[3]);
 			Assert.Equal("Smirnov", surnameSort.surnames[4]);
 		}
-		[Fact]
+        [Fact]
+        public void CurrectAscendSortRussianChar()
+        {
+            // Arrange
+            string[] strings = { "Олегов", "Сидоров", "Драгунов", "Смирнов", "Гаврилов" };
+            SurnameSort surnameSort = new SurnameSort(strings);
+
+            // Act
+            surnameSort.Sort("1");
+
+            // Assert
+            Assert.Equal("Гаврилов", surnameSort.surnames[0]);
+            Assert.Equal("Драгунов", surnameSort.surnames[1]);
+            Assert.Equal("Олегов", surnameSort.surnames[2]);
+            Assert.Equal("Сидоров", surnameSort.surnames[3]);
+            Assert.Equal("Смирнов", surnameSort.surnames[4]);
+        }
+        [Fact]
 		public void CurrectDescendSort()
 		{
 			// Arrange
@@ -118,5 +135,23 @@ namespace Exception_EventConsoleApp
 			Assert.Equal("Gavrilov", surnameSort.surnames[3]);
 			Assert.Equal("Dragunov", surnameSort.surnames[4]);
 		}
-	}
+        [Fact]
+        public void CurrectDescendSortRussianChar()
+        {
+            // Arrange
+            string[] strings = { "Олегов", "Сидоров", "Драгунов", "Смирнов", "Гаврилов" };
+            SurnameSort surnameSort = new SurnameSort(strings);
+
+            // Act
+            surnameSort.Sort("2");
+
+            // Assert
+
+            Assert.Equal("Смирнов", surnameSort.surnames[0]);
+            Assert.Equal("Сидоров", surnameSort.surnames[1]);
+            Assert.Equal("Олегов", surnameSort.surnames[2]);
+            Assert.Equal("Драгунов", surnameSort.surnames[3]);
+            Assert.Equal("Гаврилов", surnameSort.surnames[4]);
+        }
+    }
 }
