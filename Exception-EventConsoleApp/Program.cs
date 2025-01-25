@@ -39,23 +39,7 @@
             //surnameSortThrowEventList.Sort();
             //surnameSortThrowEventList.ShowSurnames();
 
-            //FileScraping fileScraping = new FileScraping(@"H:\Windows\System32\drivers\etc\hosts");
-
-            MyException2 myException = new MyException2("Это пользовательское исключение!");
-            try
-            {
-                // Создаем экземпляр MyException и выбрасываем его
-                throw new MyException2("Это пользовательское исключение!");
-            }
-            catch (MyException2 ex)
-            {
-                // Ловим и обрабатываем исключение
-                Console.WriteLine($"Поймано исключение: {ex.Message}");
-            }
-        }
-        public class MyException2 : Exception
-        {
-            public MyException2(string message) : base(message) { Console.WriteLine("23"); }
+            //FileScraping fileScraping = new FileScraping(@"C:\Windows\System32\drivers\etc\hosts", "localhost");
         }
     }
 }

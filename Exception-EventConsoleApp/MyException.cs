@@ -11,7 +11,6 @@ namespace Exception_EventConsoleApp
 
         public MyException(string message) : base(message)
         {
-            Console.WriteLine("My Exception happened:" + DateTime.Now);
         }
     }
 }
