@@ -11,6 +11,8 @@ namespace Exception_EventConsoleApp
 
         public MyException(string message) : base(message)
         {
+            File.AppendAllText("log.txt", Environment.NewLine + 
+                DateTime.Now.ToString("dd MM yyyy HH mm ss") + " File don't contain keyword. Details: " + message);
         }
     }
 }

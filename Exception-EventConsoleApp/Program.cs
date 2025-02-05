@@ -39,7 +39,7 @@
             //surnameSortThrowEventList.Sort();
             //surnameSortThrowEventList.ShowSurnames();
 
-            //FileScraping fileScraping = new FileScraping(@"C:\Windows\System32\drivers\etc\hosts", "localhost");
+            FileScraping fileScraping = new FileScraping(@"C:\Windows\System32\drivers\etc\hosts", "localhostn");
         }
     }
 }
